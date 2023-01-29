@@ -227,7 +227,7 @@ void escolhepeca(){
             acaba = 1;
         }
 
-    }else if(nump == 4){ //Z CABEÇA A ESQUERDA
+    }else if(nump == 4){ //Z CABEï¿½A A ESQUERDA
         if(area[1][9] == ' ' && area[1][10] == ' ' && area[2][10] == ' ' && area[2][11] == ' ' ){
             al = 1;
             bl = 1;
@@ -241,7 +241,7 @@ void escolhepeca(){
             acaba = 1;
         }
 
-    }else if(nump == 5){  //Z CABEÇA A DIREITA
+    }else if(nump == 5){  //Z CABEï¿½A A DIREITA
         if(area[1][11] == ' ' && area[1][10] == ' ' && area[2][10] == ' ' && area[2][9] == ' ' ){
             al = 1;
             bl = 1;
@@ -602,8 +602,10 @@ int main(){
 
 
     system("cls");
+    printf("PERDEU!!\n");
+    printf("pontuacao: %d\n", pontuacao);
     imprimearea();
-    printf("Perdeu!!\n");
+
 
 
 
