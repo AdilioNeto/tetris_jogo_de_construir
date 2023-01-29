@@ -602,7 +602,7 @@ int main(){
 
 
     system("cls");
-    printf("PERDEU!!\n");
+    printf("PERDEU!\n");
     printf("pontuacao: %d\n", pontuacao);
     imprimearea();
 
