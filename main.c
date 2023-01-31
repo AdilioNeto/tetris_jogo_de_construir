@@ -7,6 +7,7 @@
 int linhas = 20;
 int colunas = 20;
 char area[20][20];
+int colors[20][20];
 
 
 int al;
@@ -19,6 +20,7 @@ int cc;
 int dc;
 
 
+int color;
 int nump;
 char lado;
 int pontuacao = 0;
@@ -32,6 +34,33 @@ int zte = 1;
 int ztd = 1;
 int tiv = 1;
 
+void reset () {
+  printf("\033[0m");
+}
+
+void red () {
+  printf("\033[1;31m");
+}
+
+void yellow() {
+  printf("\033[1;33m");
+}
+
+void green () {
+  printf("\033[0;32m");
+}
+
+void purple () {
+  printf("\033[0;35m");
+}
+
+void azul(){
+    prinf("\x1b[31m");
+}
+
+/*void cyan (){
+    printf("\033[0;36m");
+}*/
 
 void criaarea(){
 
@@ -68,6 +97,25 @@ void limpalinha(int i){
         area[j][16] = area[j - 1][16];
         area[j][17] = area[j - 1][17];
         area[j][18] = area[j - 1][18];
+
+        colors[j][1] = colors[j - 1][1];
+        colors[j][2] = colors[j - 1][2];
+        colors[j][3] = colors[j - 1][3];
+        colors[j][4] = colors[j - 1][4];
+        colors[j][5] = colors[j - 1][5];
+        colors[j][6] = colors[j - 1][6];
+        colors[j][7] = colors[j - 1][7];
+        colors[j][8] = colors[j - 1][8];
+        colors[j][9] = colors[j - 1][9];
+        colors[j][10] = colors[j - 1][10];
+        colors[j][11] = colors[j - 1][11];
+        colors[j][12] = colors[j - 1][12];
+        colors[j][13] = colors[j - 1][13];
+        colors[j][14] = colors[j - 1][14];
+        colors[j][15] = colors[j - 1][15];
+        colors[j][16] = colors[j - 1][16];
+        colors[j][17] = colors[j - 1][17];
+        colors[j][18] = colors[j - 1][18];
     }
     pontuacao += 20;
 }
@@ -146,7 +194,22 @@ void *descepeca(){
 void imprimearea(){
     for(int i = 0; i < linhas; i++){
         for(int j = 0; j < colunas; j++){
+            if(colors[i][j] == 1){
+                red();
+            }else if(colors[i][j] == 2){
+                yellow();
+            }else if(colors[i][j] == 3){
+                green();
+            }else if(colors[i][j] == 4){
+                purple();
+            }else if(colors[i][j] == 5){
+                blue();
+            }/*else if(colors[i][j] == 6){
+                cyan();
+            }*/
             printf("%c", area[i][j]);
+            reset();
+
         }
         printf("\n");
     }
@@ -154,11 +217,17 @@ void imprimearea(){
 }
 
 void criapeca (){
+
     area[al][ac] = '*';
     area[bl][bc] = '*';
     area[cl][cc] = '*';
     area[dl][dc] = '*';
     area[0][0] = '.';
+
+    colors[al][ac] = color;
+    colors[bl][bc] = color;
+    colors[cl][cc] = color;
+    colors[dl][dc] = color;
 }
 
 void limpapeca(){
@@ -171,6 +240,8 @@ void escolhepeca(){
     srand(time(0));
     nump = rand() % 7;
 
+    color = nump + 1;
+
     if(nump == 0){ //QUADRADO
         if(area[1][9] == ' ' && area[1][10] == ' ' && area[2][9] == ' ' && area[2][10] == ' ' ){
             al = 1;
@@ -181,6 +252,7 @@ void escolhepeca(){
             bc = 10;
             cc = 9;
             dc = 10;
+            criapeca();
         }else{
             acaba = 1;
         }
@@ -195,6 +267,7 @@ void escolhepeca(){
             bc = 9;
             cc = 10;
             dc = 11;
+            criapeca();
         }else{
             acaba = 1;
         }
@@ -209,6 +282,7 @@ void escolhepeca(){
             bc = 9;
             cc = 10;
             dc = 11;
+            criapeca();
         }else{
             acaba = 1;
         }
@@ -223,6 +297,7 @@ void escolhepeca(){
             bc = 9;
             cc = 10;
             dc = 11;
+            criapeca();
         }else{
             acaba = 1;
         }
@@ -237,6 +312,7 @@ void escolhepeca(){
             bc = 10;
             cc = 10;
             dc = 11;
+            criapeca();
         }else{
             acaba = 1;
         }
@@ -251,6 +327,7 @@ void escolhepeca(){
             bc = 10;
             cc = 10;
             dc = 9;
+            criapeca();
         }else{
             acaba = 1;
         }
@@ -265,13 +342,15 @@ void escolhepeca(){
             bc = 9;
             cc = 10;
             dc = 11;
+            criapeca();
         }else{
             acaba = 1;
         }
 
     }
 
-    criapeca();
+
+
 
 }
 
@@ -306,6 +385,40 @@ void direita(){
 
     criapeca();
 
+}
+
+void descerapido(){
+    limpapeca();
+
+    if(area[al + 4][ac] == ' ' && area[bl + 4][bc] == ' ' && area[cl + 4][cc] == ' ' && area[dl + 4][dc] == ' ' &&
+       area[al + 3][ac] == ' ' && area[bl + 3][bc] == ' ' && area[cl + 3][cc] == ' ' && area[dl + 3][dc] == ' ' &&
+       area[al + 2][ac] == ' ' && area[bl + 2][bc] == ' ' && area[cl + 2][cc] == ' ' && area[dl + 2][dc] == ' ' &&
+       area[al + 1][ac] == ' ' && area[bl + 1][bc] == ' ' && area[cl + 1][cc] == ' ' && area[dl + 1][dc] == ' '){
+        al += 4;
+        bl += 4;
+        cl += 4;
+        dl += 4;
+    }else if(area[al + 3][ac] == ' ' && area[bl + 3][bc] == ' ' && area[cl + 3][cc] == ' ' && area[dl + 3][dc] == ' ' &&
+             area[al + 2][ac] == ' ' && area[bl + 2][bc] == ' ' && area[cl + 2][cc] == ' ' && area[dl + 2][dc] == ' ' &&
+             area[al + 1][ac] == ' ' && area[bl + 1][bc] == ' ' && area[cl + 1][cc] == ' ' && area[dl + 1][dc] == ' '){
+        al += 3;
+        bl += 3;
+        cl += 3;
+        dl += 3;
+    }else if(area[al + 2][ac] == ' ' && area[bl + 2][bc] == ' ' && area[cl + 2][cc] == ' ' && area[dl + 2][dc] == ' ' &&
+             area[al + 1][ac] == ' ' && area[bl + 1][bc] == ' ' && area[cl + 4][cc] == ' ' && area[dl + 1][dc] == ' '){
+        al += 2;
+        bl += 2;
+        cl += 2;
+        dl += 2;
+    }else if(area[al + 1][ac] == ' ' && area[bl + 1][bc] == ' ' && area[cl + 1][cc] == ' ' && area[dl + 1][dc] == ' '){
+        al += 1;
+        bl += 1;
+        cl += 1;
+        dl += 1;
+    }
+
+    criapeca();
 }
 
 void girapeca(){
@@ -367,18 +480,18 @@ void girapeca(){
                 dc = ac;
             }
         }else if(lbe == 2){
-            if(area[al][ac - 1] == ' ' && area[al + 1][ac + 1] == ' '){
+            if(area[bl][bc + 1] == ' ' && area[bl +  1][bc + 1] == ' '){
+                cc = bc + 1;
+                dc = bc +1;
+                cl = bl;
+                dl = bl + 1;
+            }else if(area[al][ac - 1] == ' ' && area[al + 1][ac + 1] == ' '){
                 ac--;
                 bc = ac + 1;
                 cc = bc + 1;
                 cl = al;
                 dl = al + 1;
                 dc = cc;
-            }else if(area[bl][bc + 1] == ' ' && area[bl +  1][bc + 1] == ' '){
-                cc = bc + 1;
-                dc = bc +1;
-                cl = bl;
-                dl = bl + 1;
             }
         }else if(lbe == 3){
             if(area[al + 1][bc] == ' ' && area[al + 2][bc] == ' ' && area[al + 2][ac] == ' '){
@@ -598,6 +711,7 @@ int main(){
         if(lado == 'a' || lado == 'A') esquerda();
         if(lado == 'd' || lado == 'D') direita();
         if(lado == 'w' || lado == 'W') girapeca();
+        if(lado == 'S' || lado == 's') descerapido();
     }while(acaba == 0);
 
 
@@ -606,7 +720,7 @@ int main(){
     printf("pontuacao: %d\n", pontuacao);
     imprimearea();
 
-
+    system("pause");
 
 
     return 0;
