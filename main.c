@@ -54,11 +54,11 @@ void purple () {
   printf("\033[0;35m");
 }
 
-void azul(){
+/*void azul(){
     prinf("\x1b[31m");
 }
 
-/*void cyan (){
+void cyan (){
     printf("\033[0;36m");
 }*/
 
@@ -202,9 +202,9 @@ void imprimearea(){
                 green();
             }else if(colors[i][j] == 4){
                 purple();
-            }else if(colors[i][j] == 5){
+            }/*else if(colors[i][j] == 5){
                 blue();
-            }/*else if(colors[i][j] == 6){
+            }else if(colors[i][j] == 6){
                 cyan();
             }*/
             printf("%c", area[i][j]);
