@@ -5,3 +5,5 @@ Para implementar o jogo usei:
 - compilador: tdm-gcc
 
 ![](https://github.com/AdilioNeto/tetris_jogo_de_construir/blob/main/play.gif)
+
+![](https://github.com/AdilioNeto/tetris_jogo_de_construir/blob/add_color/tetris.gif)
